@@ -4,7 +4,7 @@ Automatic Program Repair with On-Demand Candidate Generation.
 Given a faulty program and a test suite that has test failures, SketchFix tries to find a repair for the faulty program such that all tests pass.  
 
 ## Hello World Example
-1. Import the project to Eclipse. 
+1. Import the project to Eclipse. A faulty program: SimpleExpReplace.java
 
 ```
 	public int simpleExpError() {
@@ -20,7 +20,7 @@ Given a faulty program and a test suite that has test failures, SketchFix tries 
  	public static void main(String[] args) {
 		StaticAnalyzer analyzer = new StaticAnalyzer();
 		analyzer.setConfigFile(ConfigType.SIMPLE, "SimpleConfig.txt");
-		analyzer.setFaultLocation("SimpleEXPReplace:11"); 
+		analyzer.setFaultLocation("SimpleEXPReplace:8"); 
 	}
  ```
  SimpleConfig.txt is a config file similar to Defects4J build properties.
