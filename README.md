@@ -4,11 +4,11 @@ Automatic Program Repair with On-Demand Candidate Generation.
 Given a faulty program and a test suite that has test failures, SketchFix tries to find a repair for the faulty program such that all tests pass.  
 
 ## Hello World Example
-1. Import the project to Eclipse. A faulty program: SimpleExpReplace.java and a failing test case written in JUnit test framework.
+1. Import the HelloWorld.zip to Eclipse. A faulty program: SimpleExpReplace.java and a failing test case written in JUnit test framework.
 
 ```
 	public int simpleExpError() {
-		int a = 0; 
+		int a = 2; 
 		int b = 1;
 		//expect to have int c = a;
 		int c = b;
