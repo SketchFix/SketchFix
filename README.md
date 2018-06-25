@@ -1,6 +1,8 @@
 # SketchFix
 Automatic Program Repair with On-Demand Candidate Generation.
 
+Given a faulty program and a test suite that has test failures, SketchFix tries to find a repair for the faulty program such that all tests pass.  
+
 ## Hello World Example
 1. Import the project to Eclipse. 
 
@@ -21,8 +23,16 @@ Automatic Program Repair with On-Demand Candidate Generation.
 		analyzer.setFaultLocation("SimpleEXPReplace:11", 0); // ignore the second parameter 0 for now. It is used to fit D4J.
 	}
  ```
+ SimpleConfig.txt is a config file similar to Defects4J build properties.
+ ```
+classes.modified=SimpleEXPReplace
+dir.src.classes=src
+dir.src.tests=src
+tests.trigger=TestSimpleEXPReplace::test1
+output.sketch=./
+ ```
 
-Step2: You should be able to see a list of sketches generated. Replace the file named am-0-0 with SimpleEXPReplace.java and execute Sketch4JDriver.java. 
+Step2: SketchFix generates a list of sketches. One of them is as below: 
 
 ```
 import sketch4j.request.Sketch4J;
@@ -41,6 +51,7 @@ public class SimpleEXPReplace {
 ```
 The parameter list: visible variable list, hold id, a string array simply for the purpose of printing results, target type.
 
+Replace this file with SimpleEXPReplace.java and execute SketchFixDriver.java. 
 ```
 Generate 3 candidates for the type int: [b, a, 0]
 Found solution:
