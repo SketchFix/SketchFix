@@ -20,7 +20,7 @@ Given a faulty program and a test suite that has test failures, SketchFix tries 
  	public static void main(String[] args) {
 		StaticAnalyzer analyzer = new StaticAnalyzer();
 		analyzer.setConfigFile(ConfigType.SIMPLE, "SimpleConfig.txt");
-		analyzer.setFaultLocation("SimpleEXPReplace:11", 0); // ignore the second parameter 0 for now. It is used to fit D4J.
+		analyzer.setFaultLocation("SimpleEXPReplace:11"); 
 	}
  ```
  SimpleConfig.txt is a config file similar to Defects4J build properties.
@@ -35,7 +35,7 @@ output.sketch=./
 Step2: SketchFix generates a list of sketches. One of them is as below: 
 
 ```
-import sketch4j.request.Sketch4J;
+import edSketch.request.SketchFix;
 
 public class SimpleEXPReplace {
 
@@ -43,7 +43,7 @@ public class SimpleEXPReplace {
         int a = 2;
         int b = 1;
         // expect to have int c = a;
-        int c = ((Integer) Sketch4J.EXP(new Object[] { b, a }, 0, new String[] { "b", "a" },  int.class));
+        int c = ((Integer) SketchFix.EXP(new Object[] { b, a }, 0, new String[] { "b", "a" }, int.class).invoke());
         return c;
     }
 }
