@@ -51,7 +51,38 @@ public class SimpleEXPReplace {
 ```
 The parameter list: visible variable list, hold id, a string array simply for the purpose of printing results, target type.
 
-Replace this file with SimpleEXPReplace.java and execute SketchFixDriver.java. 
+Replace this file with SimpleEXPReplace.java and execute the JUnit test case with SketchFixDriver.java.
+```
+	@Test
+	public void test1() {
+		assertEquals(2, new SimpleEXPReplace().simpleExpError());
+	}	
+```
+SketchFixDriver.java:
+```
+import edSketch.executor.SketchExecutor;
+import edSketch.request.SketchFix;
+
+public class SketchFixDriver {
+	public static void main(String[] arg){
+		org.junit.runner.JUnitCore core = new org.junit.runner.JUnitCore();
+		org.junit.runner.Result result1 = null;
+		Class target1 = Class.forName("TestSimpleEXPReplace");
+		do {
+			SketchFix.reset();
+			try {
+				result1 = core.run(target1);
+				if (result1.wasSuccessful() ) {
+					System.out.println("Found solution:  " + SketchFix.getString());
+					break;
+				} 
+			} catch (Exception e) {}
+		} while (SketchExecutor.incrementCounter());
+	}
+}
+```
+If SketchFix finds a solution that passes all tests, it prints the result as below:
+
 ```
 Generate 3 candidates for the type int: [b, a, 0]
 Found solution:
