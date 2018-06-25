@@ -1,8 +1,8 @@
 # SketchFix
-Automatic Program Repair with On-Demand Candidate Generation
+Automatic Program Repair with On-Demand Candidate Generation.
 
-## Note
-1. For anyone who want to try out the old version of SketchFix. I update a zip file with a toy example to fix the bug below. Import the project to Eclipse. 
+## Hello World Example
+1. Import the project to Eclipse. 
 
 ```
 	public int simpleExpError() {
@@ -33,13 +33,13 @@ public class SimpleEXPReplace {
         int a = 2;
         int b = 1;
         // expect to have int c = a;
-        int c = ((Integer) Sketch4J.EXP(int.class, new String[] { "b", "a" }, new Object[] { b, a }, 0, true, 1, 0));
+        int c = ((Integer) Sketch4J.EXP(new Object[] { b, a }, 0, new String[] { "b", "a" },  int.class));
         return c;
     }
 }
 
 ```
-The parameter is in old API format of EdSketch synthesis engine: Target type, String list only for the display purpose, candidate list, hole id, and 3 more. FYI, The rest three parameters are all fixed for SketchFix, in case you are interested: "true" are for whether include default value or not, and 1 is for lagency purpose (num of assignments that only used for EdSketch), and last "0" is the number of field dereference, e.g., node.next, but in SketchFix, I ture off these features, just because defects I tested from Defects4J does not need it. I also didn't claim that in ICSE paper. 
+The parameter list: visible variable list, hold id, a string array simply for the purpose of printing results, target type.
 
 ```
 Generate 3 candidates for the type int: [b, a, 0]
@@ -47,4 +47,3 @@ Found solution:
  Hole 0	a
 ```
 
-2. Since I am actively preparing a new version, I may break some features when preparing this HelloWorld example. You may email me and I should be able to fix quickly. Hopefully I could have the new version ready around July. 
