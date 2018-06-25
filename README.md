@@ -4,7 +4,7 @@ Automatic Program Repair with On-Demand Candidate Generation.
 Given a faulty program and a test suite that has test failures, SketchFix tries to find a repair for the faulty program such that all tests pass.  
 
 ## Hello World Example
-1. Import the project to Eclipse. A faulty program: SimpleExpReplace.java
+1. Import the project to Eclipse. A faulty program: SimpleExpReplace.java and a failing test case written in JUnit test framework.
 
 ```
 	public int simpleExpError() {
@@ -14,8 +14,13 @@ Given a faulty program and a test suite that has test failures, SketchFix tries 
 		int c = b;
 		return c;
 	}
+	
+	@Test
+	public void test1() {
+		assertEquals(2, new SimpleEXPReplace().simpleExpError());
+	}	
 ```
- Step 1: Run PatchGenerationRunner. Here I assume the Fault Location is known.  
+ Step 1: Run PatchGenerationRunner.java. Here I assume the Fault Location is known.  
  ```
  	public static void main(String[] args) {
 		StaticAnalyzer analyzer = new StaticAnalyzer();
@@ -51,14 +56,7 @@ public class SimpleEXPReplace {
 ```
 The parameter list: visible variable list, hold id, a string array simply for the purpose of printing results, target type.
 
-Replace this file with SimpleEXPReplace.java and execute the JUnit test case with SketchFixDriver.java.
-```
-	@Test
-	public void test1() {
-		assertEquals(2, new SimpleEXPReplace().simpleExpError());
-	}	
-```
-SketchFixDriver.java:
+Replace this file with SimpleEXPReplace.java and execute the JUnit test case with SketchFixDriver.java:
 ```
 import edSketch.executor.SketchExecutor;
 import edSketch.request.SketchFix;
